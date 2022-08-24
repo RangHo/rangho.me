@@ -80,7 +80,7 @@
 		list-style: none;
 
 		font-size: 1.5em;
-		font-family: 'Do Hyeon';
+		font-family: 'Do Hyeon', cursive;
 
 		text-transform: uppercase;
 	}
