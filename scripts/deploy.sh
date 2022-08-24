@@ -17,10 +17,7 @@ check_prerequisite() {
     log "Checking availability: pnpm..."
     if ! command -v pnpm >/dev/null; then
         log "pnpm is not installed. Installing it..."
-        curl -fsSL https://get.pnpm.io/install.sh | bash -
-
-        log "Loading new bashrc file: $HOME/.bashrc"
-        . "$HOME/.bashrc"
+        npm install -g pnpm
     fi
     log "pnpm is installed!"
 
