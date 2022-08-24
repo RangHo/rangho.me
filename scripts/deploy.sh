@@ -61,8 +61,14 @@ build() {
 }
 
 copy_output() {
+    log "Entering the build directory..."
+    cd build
+
     log "Copying build artifacts to the deploy directory..."
-    cp -r ./build "$DEPLOY_REPO_PATH/deploy"
+    cp -r ./* "$DEPLOY_REPO_PATH/deploy"
+
+    log "Exiting the build directory..."
+    cd ..
 }
 
 deploy() {
