@@ -16,8 +16,11 @@ log() {
 check_prerequisite() {
     log "Checking availability: pnpm..."
     if ! command -v pnpm >/dev/null; then
-        log "pnpm is not installed. Installing it..."
+        log "pnpm is not installed. Installing git pushit..."
         curl -fsSL https://get.pnpm.io/install.sh | bash -
+
+        export PNPM_HOME="$HOME/.local/share/pnpm"
+        export PATH="$PNPM_HOME:$PATH"
     fi
     log "pnpm is installed!"
 
