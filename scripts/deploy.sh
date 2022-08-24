@@ -9,7 +9,7 @@ DEPLOY_REPO_PATH=""
 
 ## Logging function
 log() {
-    printf "[DEPLOY] $(tput setaf 3)%s$(tput setaf 7)\n" "$*"
+    printf "[DEPLOY] \033[33m%s\033[39m\n" "$*"
 }
 
 ## Check if all required commands exist
