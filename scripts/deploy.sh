@@ -24,11 +24,8 @@ check_prerequisite() {
     fi
     log "pnpm is installed!"
 
-    log "Checking availability: node..."
-    if ! command -v node >/dev/null; then
-        log "node is not installed. Installing using pnpm..."
-        pnpm env use latest
-    fi
+    log "Installing the latest version of node..."
+    pnpm env use --global latest
     log "node is installed!"
 }
 
