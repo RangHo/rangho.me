@@ -90,4 +90,23 @@
 
 		font-size: 3em;
 	}
+
+	@media (max-width: 480px) {
+		li {
+			display: inline-block;
+
+			list-style: none;
+
+			font-size: 1em;
+			font-family: 'Do Hyeon';
+
+			text-transform: uppercase;
+		}
+
+		li span {
+			display: block;
+
+			font-size: 2em;
+		}
+	}
 </style>
