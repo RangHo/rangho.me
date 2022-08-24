@@ -3,7 +3,7 @@
 # shellcheck shell=ash
 # This script assumes at least `local` extension is enabled.
 
-readonly GITHUB_TOKEN="$1"\
+readonly GITHUB_TOKEN="$1"
 
 DEPLOY_REPO_PATH=""
 
@@ -16,11 +16,11 @@ log() {
 check_prerequisite() {
     log "Checking availability: pnpm..."
     if ! command -v pnpm >/dev/null; then
-        log "pnpm is not installed. Installing git pushit..."
+        log "pnpm is not installed. Installing it..."
         curl -fsSL https://get.pnpm.io/install.sh | bash -
 
-        export PNPM_HOME="$HOME/.local/share/pnpm"
-        export PATH="$PNPM_HOME:$PATH"
+        log "Loading new bashrc file: $HOME/.bashrc"
+        source "$HOME/.bashrc"
     fi
     log "pnpm is installed!"
 
