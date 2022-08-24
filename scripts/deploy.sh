@@ -20,7 +20,7 @@ check_prerequisite() {
         curl -fsSL https://get.pnpm.io/install.sh | bash -
 
         log "Loading new bashrc file: $HOME/.bashrc"
-        source "$HOME/.bashrc"
+        . "$HOME/.bashrc"
     fi
     log "pnpm is installed!"
 
