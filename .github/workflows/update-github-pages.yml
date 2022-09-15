@@ -14,12 +14,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Check out the template repository
-      - uses: actions/checkout@v2
+      - name: 📲 Checkout repository
+        uses: actions/checkout@v2
         with:
           ref: main
+      
+      - name: 🧩 Install dependencies
+        run: |
+          npm install -g pnpm
+          pnpm env use --global latest
+      
+      - name: 🚧 Build using SvelteKit
+        run: |
+          pnpm install
+          pnpm run build
 
-      - name: Run the generator script
-        run: sh ./scripts/deploy.sh "$GITHUB_TOKEN"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: 🚀 Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: build
