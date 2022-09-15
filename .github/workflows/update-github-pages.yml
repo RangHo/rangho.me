@@ -22,7 +22,8 @@ jobs:
       - name: 🧩 Install dependencies
         run: |
           npm install -g pnpm
-          pnpm setup
+          export PNPM_HOME="$HOME/.local/share/pnpm"
+          export PATH="$PNPM_HOME:$PATH"
           pnpm env use --global latest
       
       - name: 🚧 Build using SvelteKit
