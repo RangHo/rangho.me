@@ -1,5 +1,5 @@
 <script lang="ts">
-	import 'normalize.css';
+    import "normalize.css";
 </script>
 
 <slot />
