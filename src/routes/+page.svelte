@@ -3,6 +3,8 @@
 
     const dischargeDate = new Date(2022, 11, 3).getTime();
 
+    let discharged: boolean;
+
     let days: number;
     let hours: number;
     let minutes: number;
@@ -17,15 +19,17 @@
     $: {
         let diff = dischargeDate - currentDate;
 
-        days = Math.floor(diff / 1000 / 60 / 60 / 24);
-        hours = Math.floor((diff / 1000 / 60 / 60) % 24);
-        minutes = Math.floor((diff / 1000 / 60) % 60);
-        seconds = Math.floor((diff / 1000) % 60);
+        discharged = diff < 0;
+
+        days = Math.max(Math.floor(diff / 1000 / 60 / 60 / 24), 0);
+        hours = Math.max(Math.floor((diff / 1000 / 60 / 60) % 24), 0);
+        minutes = Math.max(Math.floor((diff / 1000 / 60) % 60), 0);
+        seconds = Math.max(Math.floor((diff / 1000) % 60), 0);
     }
 </script>
 
 <div class="container">
-    <div class="countdown">
+    <div class="countdown" transition:fly={{ y: -50, duration: 500 }}>
         <ul>
             {#key days}
                 <li>
@@ -51,6 +55,11 @@
             {/key}
         </ul>
     </div>
+    {#if discharged}
+        <div class="coming-soon" in:fly={{ y: 50, duration: 500, delay: 1000 }}>
+            Coming soon...
+        </div>
+    {/if}
 </div>
 
 <style>
@@ -118,5 +127,10 @@
 
             font-size: 2em;
         }
+    }
+
+    .coming-soon {
+        font-size: 3em;
+        font-family: "Do Hyeon", cursive;
     }
 </style>
