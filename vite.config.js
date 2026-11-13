@@ -1,8 +1,15 @@
-import { sveltekit } from '@sveltejs/kit/vite';
+import { defineConfig } from "vite";
 
-/** @type {import('vite').UserConfig} */
-const config = {
-  plugins: [sveltekit()],
-};
+import { enhancedImages } from "@sveltejs/enhanced-img";
+import { sveltekit } from "@sveltejs/kit/vite";
+import unocss from "unocss/vite";
 
-export default config;
+import pkg from "./package.json";
+
+export default defineConfig({
+  define: {
+    __DEPENDENCIES__: pkg.dependencies,
+    __DEV_DEPENDENCIES__: pkg.devDependencies,
+  },
+  plugins: [enhancedImages(), unocss(), sveltekit()],
+});

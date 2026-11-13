@@ -1,17 +1,47 @@
-import adapter from '@sveltejs/adapter-static';
-import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
+import adapter from "@sveltejs/adapter-cloudflare";
+import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
+import { orgPreprocess } from "svelte-preprocess-org";
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-  // Consult https://kit.svelte.dev/docs/integrations#preprocessors
-  // for more information about preprocessors
-  preprocess: vitePreprocess(),
-
+  extensions: [".svelte", ".org"],
+  preprocess: [
+    orgPreprocess({
+      extensions: [".org"],
+      anchorFormat: '<OrgLink href=\\"%s\\">%s</OrgLink>',
+      componentImportAlist: {
+        "$lib/components/code.svelte": "Code",
+        "$lib/components/math.svelte": "Math",
+        "$lib/components/org-image.svelte": "OrgImage",
+        "$lib/components/org-link.svelte": "OrgLink",
+      },
+      idLocations: ["src/data/knowledges/*.org", "src/data/thoughts/*.org"],
+      imageFormat: '<OrgImage src=\\"%s\\" alt=\\"%s\\" />',
+      initDirectory: ".emacs.d/",
+      latexEnvironmentFormat: "<Math expression={%s} displayMode />",
+      latexDisplayFragmentFormat:
+        "<Math expression={%s} displayMode inlineMode />",
+      latexInlineFragmentFormat: "<Math expression={%s} inlineMode />",
+      metadataExportList: [
+        "title",
+        "subtitle",
+        "description",
+        "date",
+        "language",
+      ],
+      srcBlockFormat: '<Code lang=\\"%s\\" code={%s} />',
+      withSectionNumbers: false,
+      withBrokenLinks: true,
+    }),
+    vitePreprocess(),
+  ],
   kit: {
-    // adapter-auto only supports some environments, see https://kit.svelte.dev/docs/adapter-auto for a list.
-    // If your environment is not supported or you settled on a specific environment, switch out the adapter.
-    // See https://kit.svelte.dev/docs/adapters for more information about adapters.
     adapter: adapter(),
+    alias: { $data: "src/data" },
+    paths: {
+      base: process.argv.includes("dev") ? "" : process.env.BASE_PATH,
+    },
+    prerender: { handleMissingId: "warn", handleUnseenRoutes: "warn" },
   },
 };
 
