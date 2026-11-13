@@ -1,13 +1,39 @@
-// See https://kit.svelte.dev/docs/types#app
-// for information about these interfaces
-declare global {
-  namespace App {
-    // interface Error {}
-    // interface Locals {}
-    // interface PageData {}
-    // interface PageState {}
-    // interface Platform {}
-  }
-}
+import type { Component } from "svelte";
+import type { OrgMetadata } from "ox-svelte";
+import pkg from "../package.json";
 
-export {};
+declare global {
+  // namespace App {
+  //   interface Error {}
+  //   interface Locals {}
+  //   interface PageData {}
+  //   interface PageState {}
+  // }
+  declare const __DEPENDENCIES__: typeof pkg.dependencies;
+
+  declare const __DEV_DEPENDENCIES__: typeof pkg.devDependencies;
+
+  declare module "*.org" {
+    const component: Component;
+
+    export default component;
+
+    export const metadata: OrgMetadata;
+  }
+
+  namespace App {
+    interface Platform {
+      env: Env;
+      ctx: ExecutionContext;
+      caches: CacheStorage;
+      cf?: IncomingRequestCfProperties;
+    }
+  }
+
+  // namespace App {
+  //   interface Error {}
+  //   interface Locals {}
+  //   interface PageData {}
+  //   interface PageState {}
+  // }
+}

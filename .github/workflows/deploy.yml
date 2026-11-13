@@ -12,26 +12,33 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v2
+        uses: actions/checkout@v5
         with:
-          version: latest
-          run_install: true
+          submodules: recursive
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Setup Emacs
+        uses: purcell/setup-emacs@master
+        with:
+          version: 30.2
+
+      - name: Make user-emacs-directory
+        run: mkdir ".emacs.d"
 
       - name: Build project
         run: |
+          pnpm install
           pnpm build
 
-      - name: Ensure correct permission
-        run: |
-          chmod -v -R +rX "build" | while read line; do
-            echo "::notice title=Ensuring correct permission::$line"
-          done
-
       - name: Upload GitHub Pages artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v4
         with:
           path: build
 
@@ -53,4 +60,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deploy
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
