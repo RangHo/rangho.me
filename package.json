@@ -35,7 +35,7 @@
     "@sveltejs/vite-plugin-svelte": "^6.2.4",
     "@types/d3-force": "^3.0.10",
     "@types/node": "^26.6.6",
-    "@unocss/extractor-svelte": "^66.6.8",
+    "@unocss/extractor-svelte": "^66.13.0",
     "@unocss/reset": "^66.6.8",
     "eslint": "^9.39.4",
     "eslint-plugin-svelte": "^3.17.1",
