@@ -85,8 +85,8 @@ importers:
         specifier: ^4.7.8
         version: 4.7.8(picomatch@4.0.4)(svelte@5.55.5(@typescript-eslint/types@8.59.3))(typescript@5.9.3)
       svelte-meta-tags:
-        specifier: ^4.7.0
-        version: 4.7.0(svelte@5.55.5(@typescript-eslint/types@8.59.3))
+        specifier: ^5.0.3
+        version: 5.0.3(svelte@5.55.5(@typescript-eslint/types@8.59.3))
       svelte-preprocess-org:
         specifier: ^0.3.6
         version: 0.3.6(ox-svelte@0.4.8(svelte@5.55.5(@typescript-eslint/types@8.59.3)))(svelte@5.55.5(@typescript-eslint/types@8.59.3))
@@ -1893,8 +1893,12 @@ packages:
     resolution: {integrity: sha512-xal3CZX1Xlo/k4ApwCFrHVACi9fBqJ7V+mwhBsuf/1IOKbBy098Fex+Wa/5QMubw09pSZ/u8EY8PWgevJsXp1A==}
     engines: {node: '>=6'}
 
-  schema-dts@1.1.5:
-    resolution: {integrity: sha512-RJr9EaCmsLzBX2NDiO5Z3ux2BVosNZN5jo0gWgsyKvxKIUL5R3swNvoorulAeL9kLB0iTSX7V6aokhla2m7xbg==}
+  schema-dts-lib@1.1.0:
+    resolution: {integrity: sha512-Nx00FDPHDimSENMznVpADeYUJDsqlMiO9wcs2S+giggNTm5+ruNkM4m9z9qCk6xUJT+ThDM3NxxpwfHfFk1G+Q==}
+    engines: {node: '>=14.0.0'}
+
+  schema-dts@2.1.0:
+    resolution: {integrity: sha512-Y/NvOvuJUZwrm+EmNqJF3M+bRufERJs1h5GJPLilUuK5D5b53ttU+XZgIjEFaAVRToh+ib+cQawFmxKC5Jt9ow==}
 
   semver@7.8.0:
     resolution: {integrity: sha512-AcM7dV/5ul4EekoQ29Agm5vri8JNqRyj39o0qpX6vDF2GZrtutZl5RwgD1XnZjiTAfncsJhMI48QQH3sN87YNA==}
@@ -1957,8 +1961,8 @@ packages:
       svelte:
         optional: true
 
-  svelte-meta-tags@4.7.0:
-    resolution: {integrity: sha512-H65QB8UAeS8eSt9CIa0jMoVbT7igtuCQP6itC+tqGoybxITl1Xb9m2nLNCwaS53UTeGyGtT7MGgwgsuhAJpfnQ==}
+  svelte-meta-tags@5.0.3:
+    resolution: {integrity: sha512-vdJXLnx0u6sXznzy3DSnQTMnBXiqL0YywM4HulrveKMEmQXhusJv5nzqaa6hxmz6BS4UYewon/UeI7qmxtW4pw==}
     peerDependencies:
       svelte: ^5.0.0
 
@@ -3763,7 +3767,11 @@ snapshots:
     dependencies:
       mri: 1.2.0
 
-  schema-dts@1.1.5: {}
+  schema-dts-lib@1.1.0: {}
+
+  schema-dts@2.1.0:
+    dependencies:
+      schema-dts-lib: 1.1.0
 
   semver@7.8.0: {}
 
@@ -3849,9 +3857,9 @@ snapshots:
     optionalDependencies:
       svelte: 5.55.5(@typescript-eslint/types@8.59.3)
 
-  svelte-meta-tags@4.7.0(svelte@5.55.5(@typescript-eslint/types@8.59.3)):
+  svelte-meta-tags@5.0.3(svelte@5.55.5(@typescript-eslint/types@8.59.3)):
     dependencies:
-      schema-dts: 1.1.5
+      schema-dts: 2.1.0
       svelte: 5.55.5(@typescript-eslint/types@8.59.3)
 
   svelte-parse-markup@0.1.5(svelte@5.55.5(@typescript-eslint/types@8.59.3)):
